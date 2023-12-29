@@ -85,174 +85,144 @@ class _HomePageState extends State<HomePage> {
                       filled: true),
                 ),
               ),
-              // Row(
-              //   children: [
-              //     Expanded(
-              //       child: Container(
-              //         height: 65,
-              //         padding: const EdgeInsets.all(10),
-              //         margin: const EdgeInsets.symmetric(
-              //             horizontal: 20, vertical: 8),
-              //         decoration: BoxDecoration(
-              //             borderRadius: BorderRadius.circular(20),
-              //             color: Colors.white.withOpacity(0.5)),
-              //         child: Padding(
-              //           padding: const EdgeInsets.symmetric(
-              //               horizontal: 10, vertical: 13),
-              //           child: Text('Temperature: ${worker.temp}'),
-              //         ),
-              //       ),
-              //     ),
-              //   ],
-              // ),
-              const SizedBox(
-                height: 2,
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    child: Card(
-                      margin: const EdgeInsets.symmetric(horizontal: 20),
-                      elevation:
-                          5, // Optional: Add elevation for a shadow effect
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Text(
-                              'Temperature',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                              ),
-                            ),
-                            const SizedBox(height: 5),
-                            Text(
-                              worker.temp,
-                              style: const TextStyle(
-                                fontSize: 20,
-                              ),
-                            ),
-                          ],
+              Card(
+                elevation: 5,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Container(
+                  height: 80,
+                  width: 350, // Set the desired height
+                  padding: const EdgeInsets.all(10),
+                  child: const Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Temperature',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
                         ),
                       ),
-                    ),
+                      SizedBox(height: 5),
+                      Text(
+                        '25°C', // Replace with actual temperature data
+                        style: TextStyle(
+                          fontSize: 20,
+                        ),
+                      ),
+                    ],
                   ),
-                ],
+                ),
               ),
               const SizedBox(
                 height: 10,
               ),
-              Row(
-                children: [
-                  Expanded(
-                    child: Card(
-                      margin: const EdgeInsets.symmetric(horizontal: 20),
-                      elevation:
-                          5, // Optional: Add elevation for a shadow effect
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Text(
-                              'Temperature',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                              ),
-                            ),
-                            const SizedBox(height: 200),
-                            Text(
-                              worker.temp,
-                              style: const TextStyle(
-                                fontSize: 20,
-                              ),
-                            ),
-                          ],
+              Card(
+                elevation: 5,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Container(
+                  height: 350,
+                  width: 350, // Set the desired height
+                  padding: const EdgeInsets.all(10),
+                  child: const Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Temperature',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
                         ),
                       ),
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    child: Card(
-                      margin: const EdgeInsets.symmetric(horizontal: 20),
-                      elevation: 5,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: const Padding(
-                        padding: EdgeInsets.all(10),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              'Temperature',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                              ),
-                            ),
-                            SizedBox(height: 5),
-                            Text(
-                              '25°C', // Replace with actual temperature data
-                              style: TextStyle(
-                                fontSize: 20,
-                              ),
-                            ),
-                          ],
+                      SizedBox(height: 5),
+                      Text(
+                        '25°C', // Replace with actual temperature data
+                        style: TextStyle(
+                          fontSize: 20,
                         ),
                       ),
-                    ),
+                    ],
                   ),
-                  Expanded(
-                    child: Card(
-                      margin: const EdgeInsets.symmetric(horizontal: 20),
-                      elevation: 5,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: const Padding(
-                        padding: EdgeInsets.all(10),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              'Humidity',
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                              ),
-                            ),
-                            SizedBox(height: 5),
-                            Text(
-                              '60%', // Replace with actual humidity data
-                              style: TextStyle(
-                                fontSize: 20,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
+                ),
               ),
 
+              const SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Card(
+                        elevation: 5,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Container(
+                          height: 100,
+                          width: 100, // Set the desired height
+                          padding: const EdgeInsets.all(10),
+                          child: const Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Temperature',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                ),
+                              ),
+                              SizedBox(height: 5),
+                              Text(
+                                '25°C', // Replace with actual temperature data
+                                style: TextStyle(
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Card(
+                        elevation: 5,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Container(
+                          height: 100,
+                          width: 100, // Set the desired height
+                          padding: const EdgeInsets.all(10),
+                          child: const Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Temperature',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                ),
+                              ),
+                              SizedBox(height: 5),
+                              Text(
+                                '25°C', // Replace with actual temperature data
+                                style: TextStyle(
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
               // Dsiplays the arguments from the routes
               Text('Humidity: ${worker.humidity}'),
               Text('Wind Speed: ${worker.airSpeed}'),
