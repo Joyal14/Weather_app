@@ -11,8 +11,9 @@ class LoadingPage extends StatefulWidget {
 
 class _LoadingPageState extends State<LoadingPage> {
   late Worker worker;
+  String city = "Udupi";
   void start() async {
-    Worker instance = Worker(locations: "Udupi");
+    Worker instance = Worker(locations: city);
     await instance.getData();
     setState(() {
       worker = instance;
