@@ -11,6 +11,19 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  TextEditingController searchController = TextEditingController();
+  // Method to handle the search functionality
+  void search() async {
+    String searchText = searchController.text;
+
+    // Perform any additional validation or processing if needed
+
+    // Navigate to the LoadingPage with the search text
+    Navigator.pushNamed(context, "/loading_page", arguments: {
+      "searchText": searchText,
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     var cityName = [
@@ -37,8 +50,17 @@ class _HomePageState extends State<HomePage> {
     // Checks the arguments
     if (arguments is Worker) {
       Worker worker = arguments;
-      String temp = worker.temp.toString().substring(0, 4);
+      String temp = worker.temp.toString().substring(0, 2);
+      String speed = worker.airSpeed.toString().substring(0, 2);
+      if (temp == "NA") {
+        print("NA");
+      } else {
+        temp = worker.temp.toString().substring(0, 4);
+        speed = worker.airSpeed.toString().substring(0, 4);
+      }
       String icon = worker.icons;
+
+      String percentage = worker.humidity.toString();
 
       return Scaffold(
         resizeToAvoidBottomInset: false,
@@ -70,6 +92,7 @@ class _HomePageState extends State<HomePage> {
                   margin:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                   child: TextField(
+                    controller: searchController,
                     onChanged: (String q) {},
                     style: const TextStyle(
                       fontWeight: FontWeight.normal,
@@ -78,7 +101,20 @@ class _HomePageState extends State<HomePage> {
                     decoration: InputDecoration(
                         hintText: "Search $city",
                         prefixIcon: GestureDetector(
-                          onTap: () {},
+                          onTap: () {
+                            if ((searchController.text).replaceAll(" ", "") ==
+                                "") {
+                              print("blank search");
+                            } else {
+                              Navigator.pushNamed(
+                                context,
+                                "/loading_page",
+                                arguments: {
+                                  "searchText": searchController.text
+                                },
+                              );
+                            }
+                          },
                           child: const Icon(
                             Icons.search,
                             color: Colors.blue,
@@ -113,16 +149,15 @@ class _HomePageState extends State<HomePage> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              const Text(
-                                "bdfggg",
-                                style: TextStyle(
+                              Text(
+                                worker.description,
+                                style: const TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 16,
+                                  fontSize: 20,
                                 ),
                               ),
                               Text(
-                                worker
-                                    .description, // Replace with actual temperature data
+                                "In ${worker.locations}", // Replace with actual temperature data
                                 style: const TextStyle(
                                   fontSize: 16,
                                 ),
@@ -195,21 +230,21 @@ class _HomePageState extends State<HomePage> {
                             height: 170,
                             width: 100, // Set the desired height
                             padding: const EdgeInsets.all(10),
-                            child: const Column(
+                            child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Icon(
+                                const Icon(
                                   Icons.air,
                                   size: 40,
                                 ),
-                                SizedBox(height: 5),
+                                const SizedBox(height: 5),
                                 Text(
-                                  '25.8', // Replace with actual temperature data
-                                  style: TextStyle(
+                                  speed, // Replace with actual temperature data
+                                  style: const TextStyle(
                                       fontSize: 28,
                                       fontWeight: FontWeight.bold),
                                 ),
-                                Text(
+                                const Text(
                                   'Km/hr', // Replace with actual temperature data
                                   style: TextStyle(
                                     fontSize: 16,
@@ -231,21 +266,26 @@ class _HomePageState extends State<HomePage> {
                             height: 170,
                             width: 100, // Set the desired height
                             padding: const EdgeInsets.all(10),
-                            child: const Column(
+                            child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
+                                const Icon(
+                                  Icons.water,
+                                  size: 40,
+                                ),
+                                const SizedBox(height: 5),
                                 Text(
-                                  'Temperature',
-                                  style: TextStyle(
+                                  percentage,
+                                  style: const TextStyle(
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 16,
+                                    fontSize: 28,
                                   ),
                                 ),
-                                SizedBox(height: 5),
-                                Text(
-                                  '25°C', // Replace with actual temperature data
+                                const SizedBox(height: 5),
+                                const Text(
+                                  'Precent', // Replace with actual temperature data
                                   style: TextStyle(
-                                    fontSize: 20,
+                                    fontSize: 16,
                                   ),
                                 ),
                               ],
@@ -257,10 +297,10 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 // Dsiplays the arguments from the routes
-                Text('Humidity: ${worker.humidity}'),
-                Text('Wind Speed: ${worker.airSpeed}'),
-                Text('Weather: ${worker.weather}'),
-                Text('Description: ${worker.description}'),
+                // Text('Humidity: ${worker.humidity}'),
+                // Text('Wind Speed: ${worker.airSpeed}'),
+                // Text('Weather: ${worker.weather}'),
+                // Text('Description: ${worker.description}'),
                 // Add more Text widgets or UI components as needed
               ],
             ),

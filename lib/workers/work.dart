@@ -34,7 +34,7 @@ class Worker {
       double getAirSpeed = data['list'][3]['wind']['speed'] / 0.28;
       String getIcons = weatherData['icon'].toString();
 
-      //Assiging values
+      //Assiging value
       temp = getTemp.toString();
       humidity = getHumidity.toString();
       airSpeed = getAirSpeed.toString();
@@ -42,11 +42,11 @@ class Worker {
       weather = getWeather;
       icons = getIcons;
     } catch (e) {
-      temp = "Can't find data";
-      humidity = "Can't find data";
-      airSpeed = "Can't find data";
+      temp = "NA";
+      humidity = "NA";
+      airSpeed = "NA";
       description = "Can't find data";
-      weather = "Can't find data";
+      weather = "NA";
       icons = "04d";
     }
   }

@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
       routes: {
         "/": (context) => const LoadingPage(),
         "/home_page": (context) => const HomePage(),
+        "/loading_page": (context) => const LoadingPage()
       },
     );
   }

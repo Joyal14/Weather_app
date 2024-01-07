@@ -12,31 +12,53 @@ class LoadingPage extends StatefulWidget {
 class _LoadingPageState extends State<LoadingPage> {
   late Worker worker;
   String city = "Udupi";
-  void start() async {
-    Worker instance = Worker(locations: city);
-    await instance.getData();
-    setState(() {
-      worker = instance;
-    });
-
-    Future.delayed(const Duration(seconds: 2), () {
-      // ignore: use_build_context_synchronously
-      Navigator.pushReplacementNamed(
-        context,
-        '/home_page',
-        arguments: worker,
-      );
-    });
-  }
 
   @override
   void initState() {
     super.initState();
-    start();
+    start(city);
+  }
+
+  void start(String city) async {
+    Worker instance = Worker(locations: city);
+
+    try {
+      // Check if the widget is still mounted before calling setState
+      if (mounted) {
+        await instance.getData();
+
+        setState(() {
+          worker = instance;
+        });
+
+        Future.delayed(const Duration(seconds: 2), () {
+          // Check if the widget is still mounted before navigating
+          if (mounted) {
+            Navigator.pushReplacementNamed(
+              context,
+              '/home_page',
+              arguments: worker,
+            );
+          }
+        });
+      }
+    } catch (e) {
+      // Handle any errors that might occur during async operations
+      print("Error: $e");
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    // Extracting the city from the arguments
+    Map<String, dynamic>? search =
+        ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
+
+    if (search?.isNotEmpty ?? false) {
+      city = search?['searchText'];
+    }
+    start(city);
+
     return Scaffold(
       backgroundColor: const Color.fromRGBO(63, 63, 63, 1),
       body: Center(
@@ -50,9 +72,10 @@ class _LoadingPageState extends State<LoadingPage> {
             const Text(
               "Weather App",
               style: TextStyle(
-                  fontSize: 40,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white),
+                fontSize: 40,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
             ),
             const SizedBox(
               height: 20,
@@ -60,9 +83,10 @@ class _LoadingPageState extends State<LoadingPage> {
             const Text(
               "By Joyal Dsilva",
               style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.normal,
-                  color: Colors.white),
+                fontSize: 20,
+                fontWeight: FontWeight.normal,
+                color: Colors.white,
+              ),
             ),
             const SizedBox(
               height: 30,
